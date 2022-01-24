@@ -1,0 +1,33 @@
+######PALINDROM###########
+
+char rec[32];
+int duzina;
+int i;
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {  
+  Serial.println("Unesite rec: ");
+  while(Serial.available() == 0);
+  delay(100);
+  duzina = Serial.available();
+  Serial.readBytes(rec,duzina);
+  rec[duzina] = 0;
+  
+  i = 0;
+  if(i<duzina)
+  {
+    if(rec[i] == rec[duzina-1-i])
+    {
+    	Serial.print("Rec ");
+    	Serial.print(rec);
+    	Serial.println(" je palindrom");
+      	i++;
+    }
+    
+    else 
+      Serial.println("rec nije palindrom");
+  }
+}
+
