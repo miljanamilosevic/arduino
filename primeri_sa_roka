@@ -4,10 +4,13 @@ char rec[32];
 int duzina;
 int i;
 void setup() {
+  
   Serial.begin(9600);
+  
 }
 
 void loop() {  
+  
   Serial.println("Unesite rec: ");
   while(Serial.available() == 0);
   delay(100);
@@ -15,20 +18,127 @@ void loop() {
   Serial.readBytes(rec,duzina);
   rec[duzina] = 0;
   
-  i = 0;
-  if(i<duzina)
-  {
-    if(rec[i] == rec[duzina-1-i])
-    {
-    	Serial.print("Rec ");
-    	Serial.print(rec);
-    	Serial.println(" je palindrom");
-      	i++;
-    }
-    
-    else 
-      Serial.println("rec nije palindrom");
+  int pokazivac = 0;
+  for (i = 0; i< duzina; i++) {
+    if (rec[i] != rec[duzina-1-i])pokazivac = 1;
+  
   }
+  
+  if (pokazivac == 1) Serial.println("rec nije polindrom");
+  if (pokazivac == 0) Serial.println("rec jeste polindrom");
+   
+}
+
+###horoskop
+
+int day, int month;
+
+//unesemo dan i mesec
+
+if(month==1){
+  if(day>=20)
+    Serial.println("aquarius");
+  else
+    Serial.println("capricorn");
+}
+else if(month==2){
+  if(day>=19)
+    Serial.println("pisces");
+  else
+    Serial.println("capricorn");
+}
+else if(month==3){
+  if(day>=21)
+    Serial.println("aries");
+  else
+    Serial.println("pisces");
+}
+//...itd
+
+####kapitalizacija
+char recenica[30];
+int duzina;
+
+//unesemo recenicu
+
+for(int i = 0; i < duzina; i++) //idemo kroz svako slovo
+{
+  if(recenica[i] >= 97){ //ako je malo slovo
+    recenica[i] -= 32; //zamenimo ga sa velikim
+  }
+}
+
+//"Unesi rec i izbroji koliko ima samoglasnika", prvi nacin, preko pomocnog niza
+
+void setup(){
+  Serial.begin(96000);
+}
+  
+void loop(){
+  char rec[25];
+  int duzina;
+  
+  char vokali[5] = {'a','e','i','o','u'}; //niz sa vokalima
+  int broj = 0;
+  
+  Serial.println("Unesite rec:");
+  while(Serial.available()==0); //cekamo input
+  delay(100);
+  
+  //unos reci
+  duzina = Serial.available();
+  Serial.readBytes(rec, duzina);
+  rec[duzina] = 0;
+  
+  for(int i = 0; i<duzina; i++){// <- za svako slovo u reci
+    for(int j = 0; j<5; j++){ // <- proverimo da li je isto
+      if(rec[i] == vokali[j]){ // sa nekim odvokala
+        broj++;    // <- i povecamo brojac za 1
+      }
+    }
+  }
+  
+  Serial.print("Uneta rec: ");
+  Serial.println(rec);
+  Serial.print("Broj samoglasnika: ");
+  Serial.println(broj);
+}
+
+//"Unesi rec i izbroji koliko ima samoglasnika", drugi nacin, preko if
+
+void setup(){
+  Serial.begin(96000);
+}
+  
+void loop(){
+  char rec[25];
+  int duzina;
+  
+  int broj = 0;
+  
+  Serial.println("Unesite rec:");
+  while(Serial.available()==0); //cekamo input
+  delay(100);
+  
+  //unos reci
+  duzina = Serial.available();
+  Serial.readBytes(rec, duzina);
+  rec[duzina] = 0;
+  
+  for(int i = 0; i<duzina; i++){// <- za svako slovo u reci
+    if(rec[i]=='a'
+     ||rec[i]=='e'
+     ||rec[i]=='i'
+     ||rec[i]=='o'
+     ||rec[i]=='u'){ // proverimo da li se poklapa sa nekim od vokala
+      broj++;
+    }
+  }
+  
+  Serial.print("Uneta rec: ");
+  Serial.println(rec);
+  Serial.print("Broj samoglasnika: ");
+  Serial.println(broj);
 }
 
 ###horoskop
