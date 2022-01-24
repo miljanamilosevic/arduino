@@ -1,0 +1,23 @@
+int a;
+Serial.println("Unesite broj: ");
+while(Serial.available() == 0);
+delay(100);
+a = Serial.parseInt();
+Serial.println(a);
+  
+char ime[32];
+int duzina;
+Serial.println("Unesite ime: ");
+while(Serial.available() == 0);
+delay(100);
+duzina = Serial.available();
+Seria;.readBytes(ime,duzina);
+ime[duzina] = 0;
+print
+
+char slovo;
+Serial.println("Unesite slovo: ");
+while(Serial.available() == 0);
+delay(100);
+Serial.readBytes(&slovo, 1);
+print
