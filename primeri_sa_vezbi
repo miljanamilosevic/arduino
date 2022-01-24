@@ -1,0 +1,166 @@
+*SABIRANJE CELIH BR*
+void setup()
+{
+ Serial.begin(9600); //inicijalizacija serijskog porta
+}
+void loop()
+{
+ int a, b;
+
+ //unos pvog sabirka
+ Serial.print("Unesite prvi sabirak: ");
+ while(Serial.available() == 0); //ceka da korisnik posalje nesto
+ delay(100);
+ a = Serial.parseInt(); //ocitavanje broja iz serijskog bafera
+ Serial.println(a);
+ //unos drugog sabirka
+ Serial.print("Unesite drugi sabirak: ");
+ while(Serial.available() == 0); //ceka da korisnik posalje nesto
+ delay(100);
+ b = Serial.parseInt(); //ocitavanje broja iz serijskog bafera
+ Serial.println(b);
+ Serial.print("Zbir = ");
+ Serial.println(a + b);
+}
+
+
+*FIBONACI*
+int fibonaci[8] = {1, 1, 2, 3, 5, 8, 13, 21};
+int i;
+void setup()
+{
+ Serial.begin(9600); //inicijalizacija serijskog porta
+}
+void loop()
+{
+ if(i < 8)
+ {
+ Serial.println(fibonaci[i]);
+ i++;
+ }
+ delay(1000);
+}
+
+
+*KO JE POBEDIO*
+int prvi = 5, drugi = 3;
+void setup()
+{
+ Serial.begin(9600);
+
+ if (prvi == drugi)
+ {
+ Serial.println("Nereseno!");
+ }
+ else if (prvi > drugi)
+ {
+ Serial.println("Prvi igrac je pobedio!");
+ }
+ else
+ {
+ Serial.println("Drugi igrac je pobedio!");
+ }
+}
+void loop()
+{
+}
+
+
+*OCENE U SKOLI*
+void setup()
+{
+ Serial.begin(9600);
+}
+void loop()
+{
+ int ocena;
+ Serial.print("Unesite ocenu: ");
+ while (Serial.available() == 0);
+ delay(100);
+ ocena = Serial.parseInt();
+ Serial.println(ocena);
+ switch (ocena)
+ {
+ case 1:
+ Serial.println("Nedovoljan!");
+ break;
+ case 2:
+ Serial.println("Dovoljan!");
+ break;
+ case 3:
+ Serial.println("Dobar!");
+ break;
+ case 4:
+ Serial.println("Vrlo dobar!");
+ break;
+ case 5:
+ Serial.println("Odlican!");
+ break;
+ default:
+ Serial.println("Uneli ste nepostojecu ocenu!");
+ }
+}
+
+
+*STRING SPREDA I OTPOZADI*
+void setup()
+{
+ Serial.begin(9600); //inicijalizacija serijskog porta
+}
+void loop()
+{
+ char ime[32];
+ int duzina, index;
+
+ Serial.println("Unesite svoje ime: ");
+ while(Serial.available() == 0); //ceka da korisnik posalje nesto
+ delay(100);
+ duzina = Serial.available();
+ Serial.readBytes(ime, duzina); //ocitavanje stringa iz serijskog bafera
+ ime[duzina] = 0; //terminacija stringa
+ index = 0;
+ Serial.println("Spreda: ");
+ while(ime[index] != 0)
+ {
+ Serial.println(ime[index]);
+ index++;
+ }
+ Serial.println("otpozadi: ");
+ do
+ {
+ index--;
+ Serial.println(ime[index]);
+ }
+ while(index != 0);
+ Serial.print("Zdravo, ");
+ for(index = 0 ; index < duzina; index++)
+ Serial.print(ime[index]);
+ Serial.println("! :)");
+ Serial.print("Vozdra, ");
+ for(index = duzina-1 ; index >=0; index--)
+ Serial.print(ime[index]);
+ Serial.println("! :P");
+}
+
+
+*PITAGORINA TEOREMA*
+float a = 3.0, b = 4.0;
+float c;
+float pitagora(float kateta1, float kateta2)
+{
+ float hipotenuza = sqrt(kateta1 * kateta1 + kateta2 * kateta2);
+ return hipotenuza;
+}
+void setup()
+{
+ Serial.begin(9600); //inicijalizacija serijskog porta
+ Serial.print("Duzina prve katete je ");
+ Serial.println(a);
+ Serial.print("Duzina druge katete je ");
+ Serial.println(b);
+ Serial.print("Duzina hipotenuze je ");
+ Serial.println(pitagora(a, b));
+}
+void loop()
+{
+}
