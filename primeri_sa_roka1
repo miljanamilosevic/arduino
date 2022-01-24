@@ -1,0 +1,50 @@
+###planina
+
+void setup(){
+  Serial.begin(96000);
+}
+
+void loop() {
+  int visina;
+  
+  Serial.println("Unesite nadmorsku visinu: ");
+  while(Serial.available() == 0);
+  delay(100);
+  visina = Serial.parseInt();
+  Serial.println(visina);
+  
+  if (visina < 100)
+    Serial.println("U pitanju je brezuljak.");
+  else if (visina > 100 && visina < 500)
+    Serial.println("U pitanju je brdo.");
+  else if (visina > 500 && visina < 1000)
+    Serial.println("U pitanju je niska planina.");
+  else if (visina > 1000 && visina < 2000)
+    Serial.println("U pitanju je srednja planina.");
+  else
+    Serial.println("U pitanju je visoka planina.");
+    }
+
+##kvadrati prvih 20b.
+u setup
+for (int i=1; i<21; i++)
+Serial.println (i*i);
+
+###kvadratni koren
+serial.println(sqrt(a));
+
+###broj ponavljanja
+for(int i=0; i<duzina; i++){
+if (slovo = rec[i])
+broj++
+}
+br ponavljanja...println(broj);
+
+####visesttruko ispisivanje
+for (int i=0; i<broj, i++)
+serial.println(rec)* i;
+
+####kvadrati br u nekom intervalu
+for (int i=a; i<=b, i++)
+serial.println(i*i)
+
