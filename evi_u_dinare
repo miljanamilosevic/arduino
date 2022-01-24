@@ -1,0 +1,98 @@
+void setup(){
+  Serial.begin(96000);
+}
+
+void loop() {
+  float kurs;
+  char string[10];
+  int duzina;
+  float iznos;
+  char valuta;
+  
+  Serial.println("Unesite danasnji kurs Evra(u dinarima):");
+  while(Serial.available()==0);
+  kurs = Serial.parseFloat();
+  Serial.print("Danasnji kurs: ");
+  Serial.println(kurs);
+  
+  do{
+    Serial.println("Unesite novcani iznos, pracen oznakom valute:");
+
+    while(Serial.available()==0);
+    delay(100);
+    duzina = Serial.available();
+    Serial.readBytes(string, duzina);
+
+    valuta = string[duzina-1];
+    
+    string[duzina-1] = 0;
+    iznos = atof(string);
+
+    if(valuta == 'E'){
+      Serial.print(iznos);
+      iznos = iznos * kurs;
+      Serial.print("Eur = ");
+      Serial.print(iznos);
+      Serial.println("Din");
+    }
+    else if(valuta == 'D'){
+      Serial.print(iznos);
+      iznos = iznos / kurs;
+      Serial.print("Din = ");
+      Serial.print(iznos);
+      Serial.println("Eur");
+    }
+    else
+      Serial.println("wrong input");
+  }
+  while(valuta != 'R');
+}
+
+##############bez atof################
+
+float a;
+ char oznaka;
+ int pare;
+
+void setup(){
+ Serial.begin(9600);
+
+  
+ Serial.println("Unesite kurs Evra: ");
+ while(Serial.available() == 0); 
+ delay(100);
+ a = Serial.parseFloat();
+ Serial.println(a);
+   
+}
+void loop(){
+ Serial.println("Unesite pare sa oznakom: ");
+ while(Serial.available() == 0); 
+ delay(100);
+ pare = Serial.parseInt();
+ oznaka=Serial.read();
+ Serial.print(pare);
+ Serial.println(oznaka);
+  
+  switch(oznaka)
+  {
+    case 'E':
+      Serial.print(pare);
+      Serial.print(oznaka);
+      Serial.print(" = ");
+      Serial.print(a*pare);
+      Serial.println(" Din");
+     break;
+    
+    case 'D':
+      Serial.print(pare);
+      Serial.print(oznaka);
+      Serial.print(" = ");
+      Serial.print(pare/a);
+      Serial.println(" Evra");
+     break;
+   default:
+      Serial.println("Uneli ste nepostojecu oznaku");
+    
+  }
+}
